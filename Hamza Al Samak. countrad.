@@ -1,0 +1,97 @@
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in) ;
+        logik mainsoruce = new logik() ;
+        System.out.println( "Skriv in din text, avsluta genom att skriva stop" );
+
+        while (true) {
+            String line = scan.nextLine();
+            if (line.equalsIgnoreCase("stop")) {
+                break;
+            }
+            mainsoruce.resultat(line);
+        }
+
+
+
+
+System.out.println(" total number of lines " + mainsoruce.getradcount());
+        System.out.println(" total number of characters " + mainsoruce.gettotalcharachters());
+
+
+
+
+    }
+    public class logik {
+
+private int totalradcount ;
+private int totalcharacters ;
+
+public logik() {
+    totalradcount = 0 ;
+    totalcharacters = 0 ;
+
+
+}
+
+    public void resultat(String line) {
+    totalradcount++;
+    totalcharacters += line.length();
+
+    }
+
+    public int getradcount() {
+    return totalradcount ;
+    }
+
+    public int gettotalcharachters() {
+    return totalcharacters ;
+
+    }
+}
+import org.junit.jupiter.api.Test;
+import static org.junit.Assert.assertEquals;
+
+public class test {
+
+    @Test
+    public void testradcount (){
+        logik test =new logik();
+        test.resultat ("hej");
+        int actual =test.getradcount ();
+    assertEquals(1, actual);
+
+    }
+
+    @Test
+    public void testtotalcharacters (){
+        logik test =new logik();
+        test.resultat ("hej och hejsan ");
+        int actual =test.gettotalcharachters();
+        assertEquals(15, actual);
+
+    }
+
+    @Test
+    public void testmaincharachters  (){
+        logik test =new logik();
+        test.resultat ("Hej jag söker jobb jag har bra cv och jag är flexible person.");
+        int actual =test.gettotalcharachters();
+        assertEquals(61, actual);
+
+    }
+    @Test
+    public void testcountmorethanoneline (){
+        logik test =new logik();
+        test.resultat ("hej jag är intresserad" ) ;
+        test.resultat ("hej mitt namn är hamza" ) ;
+        test.resultat ("hej jag är 34 år gammal" ) ;
+        test.resultat ("hej jag älskar fotboll. " ) ;
+        int actual =test.getradcount ();
+        assertEquals(4, actual);
+
+    }
+
+}
