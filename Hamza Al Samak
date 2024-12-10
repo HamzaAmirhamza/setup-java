@@ -1,0 +1,26 @@
+import java.util.Scanner;
+
+public class main {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in) ;
+        logik mainsoruce = new logik() ;
+        System.out.println( "Skriv in din text, avsluta genom att skriva stop" );
+
+        while (true) {
+            String line = scan.nextLine();
+            if (line.equalsIgnoreCase("stop")) {
+                break;
+            }
+            mainsoruce.resultat(line);
+        }
+
+
+
+
+System.out.println(" total number of lines " + mainsoruce.getradcount());
+        System.out.println(" total number of characters " + mainsoruce.gettotalcharachters());
+
+
+
+
+    }
